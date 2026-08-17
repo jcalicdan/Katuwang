@@ -1,0 +1,101 @@
+﻿
+@model IEnumerable<Katuwang.Models.SystemParameter>
+@{
+    ViewData["Title"] = "System Parameter";
+    ViewData["Breadcrumps"] = "SETTINGS / Index";
+    ViewData["Header"] = "Sytem Paramter Configuration";
+}
+
+<div class="card">
+    <a class="btn btn-outline-success m-3" asp-area="" asp-controller="SystemParameter" asp-action="Create"><i class="bi bx-image-add me-1"></i> Add Record</a>
+    <div class="card-body">
+        <h5 class="card-title">Configure System Parameters</h5>
+        <table class="table table-borderless datatable">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Group</th>
+                    <th scope="col">Level</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Code</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Value</th>
+                    <th scope="col">Active</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.entryid</td>
+                        <td>@item.group</td>
+                        <td>@item.level</td>
+                        <td>@item.name</td>
+                        <td>@item.code</td>
+                        <td>@item.description</td>
+                        <td><input type="text" class="form-control" id="value.@item.entryid" value="@item.value"></td>
+                        <td>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" @if (@item.isdeleted == 1) { @Html.Raw("checked") }>
+                            </div>
+
+                        </td>
+                        <td>
+                            <button class="badge rounded-pill bg-primary" id="update">Update</button>
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <!-- End Default Table Example -->
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).on('change', '.form-check-input', function () {
+        var isChecked = $(this).prop('checked');
+        var entryId = $(this).closest('tr').find('td:first').text();
+
+        $('#loading').modal('show');
+
+        // Add a delay of 1 second before sending the AJAX request
+        setTimeout(function() {
+            $.ajax({
+                url: '@Url.Action("UpdateIsUpdated", "SystemParameter")',
+                type: 'POST',
+                data: { entryId: entryId, isChecked: isChecked },
+                success: function (result) {
+                    $('#loading').modal('hide');
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.log(textStatus + ': ' + errorThrown);
+                }
+            });
+        }, 1000);
+    });
+
+    $(document).on('click', '#update', function () {
+        var entryId = $(this).closest('tr').find('td:first').text();
+        var value = $(this).closest('tr').find('td input[type="text"]').val();
+
+        $('#loading').modal('show');
+
+        // Add a delay of 1 second before sending the AJAX request
+        setTimeout(function() {
+            $.ajax({
+                url: '@Url.Action("UpdateValue", "SystemParameter")',
+                type: 'POST',
+                data: { entryId: entryId, value: value },
+                success: function (result) {
+                    $('#loading').modal('hide');
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.log(textStatus + ': ' + errorThrown);
+                }
+            });
+        }, 1000);
+    });
+
+</script>

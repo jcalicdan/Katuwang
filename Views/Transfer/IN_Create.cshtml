@@ -1,0 +1,174 @@
+﻿@model Katuwang.Models.ViewModel.MasterlistVM
+
+@{
+    ViewData["Title"] = "SENSO";
+    ViewData["Breadcrumps"] = "SENSO / Transfer / IN";
+    ViewData["Header"] = "Impormasyon ng Kapatid na Magpapatala sa Lokal";
+}
+
+
+<section class="section profile">
+    <div class="row mb-3">
+        <form class="row mb-3 g-3 needs-validation" novalidate method="post" asp-action="IN_Create">
+            <div class="col-xl-4">
+
+                <div class="card">
+                    <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+
+                        <img src="~/assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+                        <h2>@Model.Masterlist.givenname @Model.Masterlist.mothersname @Model.Masterlist.fathersname <span @if (Model.Masterlist.spousename == null) { @Html.Raw("hidden") }> - </span>@Model.Masterlist.spousename @Model.Masterlist.suffix</h2>
+                        <h3>Purok - @Model.Masterlist.purok  Grupo - @Model.Masterlist.grupo</h3>
+                        <div class="mt-3">
+                            <h1><span class="badge bg-light text-dark">TRANSFER IN</span></h1>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-grid gap-2 mt-3">
+                    <button class="btn btn-success" type="submit"><h3>Save</h3></button>
+                </div>
+
+            </div>
+
+            <div class="col-xl-8">
+                <div class="card">
+                    <div class="card-body pt-3">
+
+                        <h5 class="card-title">Impormasyon sa Pagpapatala</h5>
+                        <input type="number" value="@Model.Masterlist.entryid" asp-for="@Model.Transfer.masterlistid" hidden>
+                        <div class="row mb-3">
+                            <h5 class="col-lg-3 label"><label asp-for="@Model.Transfer.transferdate"></label></h5>
+                            <div class="col-lg-9">
+                                <input type="date" class="form-control" value="@DateTime.Today.ToString("yyyy-MM-dd")" asp-for="@Model.Transfer.transferdate">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <h5 class="col-lg-3 label"><label asp-for="@Model.Transfer.year"></label></h5>
+                            <div class="col-lg-9">
+                                <input type="number" class="form-control" id="year" value="@DateTime.Today.ToString("yyyy")" asp-for="@Model.Transfer.year">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <h5 class="col-lg-3 label"><label asp-for="@Model.Transfer.weeknum"></label></h5>
+                            <div class="col-lg-9">
+                                <input type="number" class="form-control" id="weeknum" asp-for="@Model.Transfer.weeknum">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <h5 class="col-lg-3 label"><label asp-for="@Model.Transfer.code"></label></h5>
+                            <div class="col-lg-9">
+                                <select class="form-select" id="code" aria-label="Code" placeholder="placeholder" asp-for="@Model.Transfer.code">
+                                    </">
+                                    <option value="A">BAGONG BAUTISADO</option>
+                                    <option value="B">BALIK LOOB</option>
+                                    <option value="C" selected>GALING SA IBANG LOKAL</option>
+                                    <option value="D">LUMIPAT HINDI NATULOY</option>
+                                    @*<option value="E">INA</option>
+                    <option value="F">ANAK</option>
+                    <option value="G">KAPATID</option>
+                    <option value="H">LOLO</option>
+                    <option value="I">LOLA</option>*@
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <h5 class="col-lg-3 label"><label asp-for="@Model.Transfer.lokal"></label></h5>
+                            <div class="col-lg-9">
+                                <input type="text" class="form-control" id="lokal" asp-for="@Model.Transfer.lokal">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <h5 class="col-lg-3 label"><label asp-for="@Model.Transfer.lcode"></label></h5>
+                            <div class="col-lg-9">
+                                <input type="text" class="form-control" id="lcode" asp-for="@Model.Transfer.lcode">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <h5 class="col-lg-3 label"><label asp-for="@Model.Transfer.distrito"></label></h5>
+                            <div class="col-lg-9">
+                                <input type="text" class="form-control" id="distrito" asp-for="@Model.Transfer.distrito">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <h5 class="col-lg-3 label"><label asp-for="@Model.Transfer.dcode"></label></h5>
+                            <div class="col-lg-9">
+                                <input type="text" class="form-control" id="dcode" asp-for="@Model.Transfer.dcode">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <h5 class="col-lg-3 label"><label asp-for="@Model.Transfer.address"></label></h5>
+                            <div class="col-lg-9">
+                                <input type="text" class="form-control" id="address" asp-for="@Model.Transfer.address">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <h5 class="col-lg-3 label"><label asp-for="@Model.Transfer.isletter"></label></h5>
+                            <div class="col-lg-9">
+                                <select class="form-select" id="isletter" aria-label="Isletter" placeholder="placeholder" asp-for="@Model.Transfer.isletter">
+                                    </">
+                                    <option value="1">YES</option>
+                                    <option value="0">NO</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <input type="date" id="createdate" asp-for="@Model.Transfer.createdate" value="@DateTime.Today.ToString("yyyy-MM-dd")" hidden>
+                        <input type="text" id="createby" asp-for="@Model.Transfer.createby" value="@User.Identity.Name" hidden>
+                        <input type="date" id="modifieddate" asp-for="@Model.Transfer.modifieddate" value="1990-01-01" hidden>
+                        <input type="text" id="modifiedby" asp-for="@Model.Transfer.modifiedby" value="" hidden>
+                        <input type="text" id="isdeleted" asp-for="@Model.Transfer.isdeleted" value="0" hidden>
+
+
+                        <input type="text" value="@Model.Masterlist.entryid" asp-for="@Model.Masterlist.entryid" hidden>
+                        <input type="text" value="@Model.Masterlist.givenname" asp-for="@Model.Masterlist.givenname" hidden>
+                        <input type="text" value="@Model.Masterlist.mothersname" asp-for="@Model.Masterlist.mothersname" hidden>
+                        <input type="text" value="@Model.Masterlist.fathersname" asp-for="@Model.Masterlist.fathersname" hidden>
+                        <input type="text" value="@Model.Masterlist.spousename" asp-for="@Model.Masterlist.spousename" hidden>
+                        <input type="text" value="@Model.Masterlist.suffix" asp-for="@Model.Masterlist.suffix" hidden>
+                        <input type="text" value="@Model.Masterlist.gender" asp-for="@Model.Masterlist.gender" hidden>
+                        <input type="date" value="@Model.Masterlist.birthdate.ToString("yyyy-MM-dd")" asp-for="@Model.Masterlist.birthdate" hidden>
+                        <input type="text" value="@Model.Masterlist.civilstatus" asp-for="@Model.Masterlist.civilstatus" hidden>
+                        <input type="text" value="@Model.Masterlist.spouse" asp-for="@Model.Masterlist.spouse" hidden>
+                        <input type="date" value="@Model.Masterlist.weddingdate.ToString("yyyy-MM-dd")" asp-for="@Model.Masterlist.weddingdate" hidden>
+                        <input type="text" value="@Model.Masterlist.contactnum" asp-for="@Model.Masterlist.contactnum" hidden>
+                        <input type="text" value="@Model.Masterlist.address" asp-for="@Model.Masterlist.address" hidden>
+                        <input type="text" value="@Model.Masterlist.barangay" asp-for="@Model.Masterlist.barangay" hidden>
+                        <input type="text" value="@Model.Masterlist.purok" asp-for="@Model.Masterlist.purok" hidden>
+                        <input type="text" value="@Model.Masterlist.grupo" asp-for="@Model.Masterlist.grupo" hidden>
+                        <input type="text" value="@Model.Masterlist.newpurok" asp-for="@Model.Masterlist.newpurok" hidden>
+                        <input type="text" value="@Model.Masterlist.newgrupo" asp-for="@Model.Masterlist.newgrupo" hidden>
+                        <input type="date" value="@Model.Masterlist.baptismdate.ToString("yyyy-MM-dd")" asp-for="@Model.Masterlist.baptismdate" hidden>
+                        <input type="text" value="@Model.Masterlist.firstlokal" asp-for="@Model.Masterlist.firstlokal" hidden>
+                        <input type="text" value="@Model.Masterlist.firstdistrito" asp-for="@Model.Masterlist.firstdistrito" hidden>
+                        <input type="text" value="@Model.Masterlist.organization" asp-for="@Model.Masterlist.organization" hidden>
+                        <input type="text" value="@Model.Masterlist.minister" asp-for="@Model.Masterlist.minister" hidden>
+                        <input type="text" value="@Model.Masterlist.entrynum" asp-for="@Model.Masterlist.entrynum" hidden>
+                        <input type="text" value="@Model.Masterlist.idnum" asp-for="@Model.Masterlist.idnum" hidden>
+                        <input type="text" value="@Model.Masterlist.registrynum" asp-for="@Model.Masterlist.registrynum" hidden>
+                        <input type="text" value="@Model.Masterlist.sambahayan" asp-for="@Model.Masterlist.sambahayan" hidden>
+                        <input type="text" value="@Model.Masterlist.relasyon" asp-for="@Model.Masterlist.relasyon" hidden>
+                        <input type="text" value="1" asp-for="@Model.Masterlist.isactive" hidden>
+                        <input type="text" value="@Model.Masterlist.remarks1" asp-for="@Model.Masterlist.remarks1" hidden>
+                        <input type="text" value="@Model.Masterlist.remarks2" asp-for="@Model.Masterlist.remarks2" hidden>
+                        <input type="text" value="@Model.Masterlist.remarks3" asp-for="@Model.Masterlist.remarks3" hidden>
+                        <input type="text" value="@Model.Masterlist.createby" asp-for="@Model.Masterlist.createby" hidden>
+                        <input type="date" value="@Model.Masterlist.createdate.ToString("yyyy-MM-dd")" asp-for="@Model.Masterlist.createdate" hidden>
+                        <input type="text" value="@Model.Masterlist.modifiedby" asp-for="@Model.Masterlist.modifiedby" hidden>
+                        <input type="date" value="@DateTime.Today.ToString("yyyy-MM-dd")" asp-for="@Model.Masterlist.modifieddate" hidden>
+                        <input type="text" value="@Model.Masterlist.isdeleted" asp-for="@Model.Masterlist.isdeleted" hidden>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </div>
+</section>

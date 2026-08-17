@@ -1,0 +1,101 @@
+﻿
+@model IEnumerable<Katuwang.Models.JoinModel.R401Masterlist>
+@{
+    ViewData["Title"] = "PAGPAPATIBAY";
+    ViewData["Breadcrumps"] = "PAGPAPATIBAY / UWP / Create";
+    ViewData["Header"] = "Dagdag UWP";
+}
+<form class="row mb-1 g-1 needs-validation" novalidate method="post" asp-action="PreviousMonth">
+    <div class="col-lg-12">
+
+        <div class="card">
+            <div class="card-body">
+                <h6 class="card-title">Get Previous Month UWP</h6>
+
+                <!-- Default Accordion -->
+                <div class="accordion" id="accordionExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                Parameters
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        @*asp-for="@Model.R401.month"*@
+                                        <input type="number" class="form-control" id="month">
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <select class="form-select" id="code" aria-label="code" placeholder="placeholder">
+                                            <option value="01">JANUARY</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <button class="btn btn-sm btn-success" type="submit">Get Previous Month</button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- End Default Accordion Example -->
+
+            </div>
+        </div>
+
+    </div>
+</form>
+
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Mga UWP</h5>
+        <table class="table table-borderless datatable">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Bautismo</th>
+                    <th scope="col">Petsa Simula</th>
+                    <th scope="col">Prk-Grp</th>
+                    <th scope="col">Kapisanan</th>
+                    <th scope="col">Destinado</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{ int rowNo = 0; }
+                @foreach (var person in Model)
+                {
+                    <tr>
+                        <td>@(rowNo += 1)</td>
+                        <td>
+                            @if (person.Masterlist.spousename == "" | person.Masterlist.spousename == null)
+                            {
+                                @if (@person.Masterlist.fathersname == "NODATA")
+                                {<span>@person.Masterlist.givenname @person.Masterlist.mothersname</span>}
+                            else
+                            {<span>@person.Masterlist.givenname @person.Masterlist.fathersname</span>}
+                            }
+                            else
+                            {<span>@person.Masterlist.givenname @person.Masterlist.spousename</span>}
+                        </td>
+                        <td>@person.Masterlist.baptismdate</td>
+                        <td>@person.R401.entrydate</td>
+                        <td>@person.Masterlist.purok-@person.Masterlist.grupo</td>
+                        <td>@person.Masterlist.organization</td>
+                        <td>@person.R401.destinadoid</td>
+                        <td>
+                            <a asp-controller="UWP" asp-action="Update" asp-route-Id="@person.R401.entryid"><span class="badge rounded-pill bg-primary">SELECT</span></a>
+                            <a asp-controller="UWP" asp-action="Delete" asp-route-Id="@person.R401.entryid"><span class="badge rounded-pill bg-danger">DELETE</span></a>
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <!-- End Default Table Example -->
+    </div>
+</div>

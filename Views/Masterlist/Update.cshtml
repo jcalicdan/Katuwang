@@ -1,0 +1,373 @@
+﻿@model Katuwang.Models.Masterlist
+@{
+    ViewData["Title"] = "SENSO";
+    ViewData["Breadcrumps"] = "SENSO / Masterlist / Edit";
+    ViewData["Header"] = "Impormasyon ng Kapatid";
+    ViewData["EntryID"] = Model.entryid;
+    ViewData["Source"] = "~/images/" + Model.entryid.ToString() + ".png";
+}
+
+
+<section class="section profile">
+    <div class="row mb-3">
+        <form class="row mb-3 g-3 needs-validation" novalidate method="post" asp-action="Update">
+            <div class="col-xl-4">
+
+                <div class="card">
+                    <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+
+                        <a asp-controller="Masterlist" asp-action="UploadImage" asp-route-entryid=@Model.entryid><img src=@Url.Content(ViewData["Source"].ToString()) /></a>
+                        <h2>
+                            <span>
+                                @if (Model.spousename == "")
+                                {@Model.givenname @Model.fathersname }
+                            else
+                            { @Model.givenname @Model.spousename}
+                        </span>
+                    </h2>
+                    <h3>Purok - @Model.purok  Grupo - @Model.grupo</h3>
+
+
+                    <div class="row mb-3">
+                        <h5 class="col-lg-3 label"><label asp-for="purok"></label></h5>
+                        <div class="col-lg-9">
+                            <input type="number" class="form-control" id="purok" asp-for="purok">
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <h5 class="col-lg-3 label"><label asp-for="grupo"></label></h5>
+                        <div class="col-lg-9">
+                            <input type="number" class="form-control" id="grupo" asp-for="grupo">
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <h5 class="col-lg-3 label"><label asp-for="newpurok"></label></h5>
+                        <div class="col-lg-9">
+                            <input type="number" class="form-control" id="newpurok" asp-for="newpurok">
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <h5 class="col-lg-3 label"><label asp-for="newgrupo"></label></h5>
+                        <div class="col-lg-9">
+                            <input type="number" class="form-control" id="newgrupo" asp-for="newgrupo">
+                        </div>
+                    </div>
+                    <div class="mt-3">
+                        <h1><span class="badge bg-warning">EDIT MODE <i class="bi bi-pencil"></i></span></h1>
+                    </div>
+                    </div>
+                </div>
+
+                <div class="d-grid gap-2 mt-3">
+                    <button class="btn btn-success" type="submit"><h3>Save</h3></button>
+                </div>
+
+            </div>
+
+            <div class="col-xl-8">
+                <div class="card">
+                    <div class="card-body pt-3">
+
+                        <h5 class="card-title">Personal na Impormasyon</h5>
+
+                        <div class="row mb-3">
+                            <h5 class="col-lg-3 label"><label asp-for="givenname"></label></h5>
+                            <div class="col-lg-9">
+                                <input type="text" class="form-control" id="givenname" asp-for="givenname">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3" @if (Model.gender == "F") { @Html.Raw("hidden") }>
+                            <h5 class="col-lg-3 label"><label asp-for="suffix"></label></h5>
+                            <div class="col-lg-9">
+                                <select class="form-select" id="suffix" aria-label="Suffix" placeholder="placeholder" asp-for="suffix">
+                                    <option value=""></option>
+                                    <option value="Jr.">Jr.</option>
+                                    <option value="Sr.">Sr.</option>
+                                    <option value="I">I</option>
+                                    <option value="II">II</option>
+                                    <option value="III">III</option>
+                                    <option value="IV">IV</option>
+                                    <option value="V">V</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <h5 class="col-lg-3 label"><label asp-for="mothersname"></label></h5>
+                            <div class="col-lg-9">
+                                <input type="text" class="form-control" id="mothersname" asp-for="mothersname">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <h5 class="col-lg-3 label"><label asp-for="fathersname"></label></h5>
+                            <div class="col-lg-9">
+                                <input type="text" class="form-control" id="fathersname" asp-for="fathersname">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3" @if (Model.gender == "M") { @Html.Raw("hidden") }>
+                            <h5 class="col-lg-3 label"><label asp-for="spousename"></label></h5>
+                            <div class="col-lg-9">
+                                <input type="text" class="form-control" id="spousename" asp-for="spousename">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <h5 class="col-lg-3 label"><label asp-for="gender"></label></h5>
+                            <div class="col-lg-9">
+                                <select class="form-select" id="gender" aria-label="Gender" placeholder="placeholder" asp-for="gender">
+                                    <option value="M">Lalake</option>
+                                    <option value="F">Babae</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <h5 class="col-lg-3 label"><label asp-for="birthdate"></label></h5>
+                            <div class="col-lg-9">
+                                <input type="date" class="form-control" value="@Model.birthdate.ToString("yyyy-MM-dd")" asp-for="birthdate">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <h5 class="col-lg-3 label"><label asp-for="civilstatus"></label></h5>
+                            <div class="col-lg-9">
+                                <select class="form-select" id="civilstatus" aria-label="CivilStatus" placeholder="placeholder" asp-for="civilstatus">
+                                    <option value="S">Single</option>
+                                    <option value="M">Married</option>
+                                    <option value="W">Widow</option>
+                                    <option value="P">Separated</option>
+                                    <option value="A">Annulled</option>
+                                    <option value="D">Divorced</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <h5 class="col-lg-3 label"><label asp-for="spouse"></label></h5>
+                            <div class="col-lg-9">
+                                <input type="text" class="form-control" id="spouse" asp-for="spouse">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <h5 class="col-lg-3 label"><label asp-for="weddingdate"></label></h5>
+                            <div class="col-lg-9">
+                                <input type="date" class="form-control" value="@Model.weddingdate.ToString("yyyy-MM-dd")" asp-for="weddingdate">
+                            </div>
+                        </div>
+
+                        <hr />
+                        <h5 class="card-title">Impormasyon para Mahanap ang Kapatid</h5>
+
+                        <div class="row mb-3">
+                            <h5 class="col-lg-3 label"><label asp-for="contactnum"></label></h5>
+                            <div class="col-lg-9">
+                                <input type="text" class="form-control" id="contactnum" asp-for="contactnum">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <h5 class="col-lg-3 label"><label asp-for="address"></label></h5>
+                            <div class="col-lg-9">
+                                <input type="text" class="form-control" id="address" asp-for="address">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <h5 class="col-lg-3 label"><label asp-for="barangay"></label></h5>
+                            <div class="col-lg-9">
+                                <select class="form-select" id="barangay" aria-label="CivilStatus" placeholder="placeholder" asp-for="barangay">
+                                    <option value="1">Bahay Toro</option>
+                                    <option value="2">Project 6</option>
+                                    <option value="3">Pag-asa</option>
+                                    <option value="4">Bago Bantay</option>
+                                    <option value="5">Culiat</option>
+                                    <option value="6">Vasra</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <h5 class="col-lg-3 label"><label asp-for="purok"></label></h5>
+                            <div class="col-lg-9">
+                                <input type="number" class="form-control" id="purok" asp-for="purok">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <h5 class="col-lg-3 label"><label asp-for="grupo"></label></h5>
+                            <div class="col-lg-9">
+                                <input type="number" class="form-control" id="grupo" asp-for="grupo">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <h5 class="col-lg-3 label"><label asp-for="newpurok"></label></h5>
+                            <div class="col-lg-9">
+                                <input type="number" class="form-control" id="newpurok" asp-for="newpurok">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <h5 class="col-lg-3 label"><label asp-for="newgrupo"></label></h5>
+                            <div class="col-lg-9">
+                                <input type="number" class="form-control" id="newgrupo" asp-for="newgrupo">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <h5 class="col-lg-3 label"><label asp-for="sambahayan"></label></h5>
+                            <div class="col-lg-9">
+                                <input type="number" class="form-control" id="sambahayan" asp-for="sambahayan">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <h5 class="col-lg-3 label"><label asp-for="relasyon"></label></h5>
+                            <div class="col-lg-9">
+                                <select class="form-select" id="relasyon" aria-label="Relasyon" placeholder="placeholder" asp-for="relasyon">
+                                    <option value="IND">INDIVIDUAL</option>
+                                    <option value="PANGULO">PANGULO</option>
+                                    <option value="ASAWA">ASAWA</option>
+                                    <option value="AMA">AMA</option>
+                                    <option value="INA">INA</option>
+                                    <option value="ANAK">ANAK</option>
+                                    <option value="KAPATID">KAPATID</option>
+                                    <option value="LOLO">LOLO</option>
+                                    <option value="LOLA">LOLA</option>
+                                    <option value="APO">APO</option>
+                                    <option value="TITO">TITO</option>
+                                    <option value="TITA">TITA</option>
+                                    <option value="PAMANGKIN">PAMANGKIN</option>
+                                    <option value="BIYANAN">BIYANAN</option>
+                                    <option value="BAYAW">BAYAW</option>
+                                    <option value="HIPAG">HIPAG</option>
+                                    <option value="BALE">BALE</option>
+                                    <option value="KASAMBAHAY">KASAMBAHAY</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <hr />
+                        <h5 class="card-title">Impormasyon sa Pananampalataya</h5>
+
+                        <div class="row mb-3">
+                            <h5 class="col-lg-3 label"><label asp-for="entrynum"></label></h5>
+                            <div class="col-xxl-9">
+                                <input type="text" class="form-control" id="entrynum" asp-for="entrynum">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <h5 class="col-lg-3 label"><label asp-for="idnum"></label></h5>
+                            <div class="col-lg-9">
+                                <input type="text" class="form-control" id="idnum" asp-for="idnum">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <h5 class="col-lg-3 label"><label asp-for="registrynum"></label></h5>
+                            <div class="col-lg-9">
+                                <input type="text" class="form-control" id="registrynum" oninput="this.value = this.value.toUpperCase()" asp-for="registrynum">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <h5 class="col-lg-3 label"><label asp-for="organization"></label></h5>
+                            <div class="col-lg-9">
+                                <select class="form-select" id="organization" aria-label="organization" placeholder="placeholder" asp-for="organization">
+                                    <option value="BUKLOD">BUKLOD</option>
+                                    <option value="KADIWA">KADIWA</option>
+                                    <option value="BINHI">BINHI</option>
+                                    <option value="HDB">HDB</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <h5 class="col-lg-3 label"><label asp-for="baptismdate"></label></h5>
+                            <div class="col-lg-9">
+                                <input type="date" class="form-control" value="@Model.baptismdate.ToString("yyyy-MM-dd")" asp-for="baptismdate">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <h5 class="col-lg-3 label"><label asp-for="firstlokal"></label></h5>
+                            <div class="col-lg-9">
+                                <input type="text" class="form-control" id="firstlokal" asp-for="firstlokal">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <h5 class="col-lg-3 label"><label asp-for="firstdistrito"></label></h5>
+                            <div class="col-lg-9">
+                                <input type="text" class="form-control" id="firstdistrito" asp-for="firstdistrito">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <h5 class="col-lg-3 label"><label asp-for="minister"></label></h5>
+                            <div class="col-lg-9">
+                                <input type="text" class="form-control" id="minister" asp-for="minister">
+                            </div>
+                        </div>
+
+                        <hr />
+                        <div class="row mb-3">
+                            <h5 class="col-lg-3 label"><label asp-for="remarks1"></label></h5>
+                            <div class="col-lg-9">
+                                <input type="text" class="form-control" id="remarks1" asp-for="remarks1">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <h5 class="col-lg-3 label"><label asp-for="remarks2"></label></h5>
+                            <div class="col-lg-9">
+                                <input type="text" class="form-control" id="remarks2" asp-for="remarks2">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <h5 class="col-lg-3 label"><label asp-for="remarks3"></label></h5>
+                            <div class="col-lg-9">
+                                <select class="form-select" id="remarks3" aria-label="remarks3" placeholder="placeholder" asp-for="remarks3">
+                                    <option value=""></option>
+                                    <option value="SATURDAY" selected>SATURDAY</option>
+                                    <option value="SUNDAY">SUNDAY</option>
+                                    <option value="NAKATANGGAP NA">NAKATANGGAP NA</option>
+                                    <option value="TUTUPAD">TUTUPAD</option>
+                                    <option value="DI NAKSAMBA">DI NAKSAMBA</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="d-grid gap-2 mt-3">
+                                <button class="btn btn-success" type="submit"><h3>Save</h3></button>
+                            </div>
+                        </div>
+
+                        <input type="text" id="gender" asp-for="gender" hidden />
+                        <input type="text" id="suffix" asp-for="suffix" hidden />
+
+                        <input type="number" id="entryid" asp-for="entryid" hidden />
+                        <input type="text" id="isactive" asp-for="isactive" hidden />
+                        <input type="text" id="isupdated" asp-for="isupdated" hidden />
+                        <input type="date" id="createdate" asp-for="createdate" hidden />
+                        <input type="text" id="createby" asp-for="createby" hidden>
+                        <input type="date" id="modifieddate" asp-for="modifieddate" value="@DateTime.Today.ToString("yyyy-MM-dd")" hidden>
+                        <input type="text" id="modifiedby" asp-for="modifiedby" value="@User.Identity.Name" hidden>
+                        <input type="text" id="isdeleted" asp-for="isdeleted" hidden />
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </div>
+</section>

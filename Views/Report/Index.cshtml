@@ -1,0 +1,39 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Default Table</h5>
+
+        <!-- Default Table -->
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Parameters</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Masterlist ng Lokal</td>
+                    <td>
+                        <div class="col-sm-3"><input type="text" class="form-control"></div>
+                        <div class="col-sm-3"><input type="text" class="form-control"></div>
+                        <div class="col-sm-3"><input type="text" class="form-control"></div>
+                    </td>
+                    <td>
+                        <a asp-controller="Report" asp-action="Masterlist" ><span class="btn btn-primary rounded-pill"> <i class="bi bi-printer"></i></span></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- End Default Table Example -->
+    </div>
+</div>

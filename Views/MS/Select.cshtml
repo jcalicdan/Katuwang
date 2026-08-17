@@ -1,0 +1,53 @@
+﻿
+@model IEnumerable<Katuwang.Models.Masterlist>
+@{
+    ViewData["Title"] = "PAGPAPATIBAY";
+    ViewData["Breadcrumps"] = "PAGPAPATIBAY / MS / Select";
+    ViewData["Header"] = "Pumili ng Dagdag MS";
+}
+
+<div class="col-12">
+
+    <div class="card overflow-auto">
+
+        <div class="card-body">
+
+            @if (Model.Count() > 0)
+            {
+                <table class="table table-borderless datatable">
+                    <thead>
+                        <tr>
+                            <th scope="col">Unang Pangalan</th>
+                            <th scope="col">Pangalan sa Ina</th>
+                            <th scope="col">Pangalan sa Ama</th>
+                            <th scope="col">Pangalan sa Asawa</th>
+                            <th scope="col">Prk-Grp</th>
+                            <th scope="col">Kapisanan</th>
+                            <th scope="col">Kalagayan</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var person in Model)
+                        {
+                            <tr>
+                                <td>@person.givenname @person.suffix</td>
+                                <td>@person.mothersname</td>
+                                <td>@person.fathersname</td>
+                                <td>@person.spousename</td>
+                                <td>@person.purok-@person.grupo</td>
+                                <td>@person.organization</td>
+                                <td>Masigla</td>
+                                <td>
+                                    <a asp-controller="MS" asp-action="Create" asp-route-Id="@person.entryid"><span class="badge rounded-pill bg-primary">SELECT</span></a>
+                                </td>
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+        </div>
+
+    </div>
+</div><!-- End Recent Sales -->

@@ -1,0 +1,180 @@
+﻿@model Katuwang.Models.ViewModel.MasterlistVM
+
+@{
+    ViewData["Title"] = "PANGANGALAGA";
+    ViewData["Breadcrumps"] = "PANGANGALAGA / Maytungkulin / Create";
+    ViewData["Header"] = "Impormasyon ng Maytungkulin";
+    ViewData["Index"] = "Select";
+}
+
+<section class="section profile">
+    <div class="row mb-3">
+        <form class="row mb-3 g-3 needs-validation" novalidate method="post" asp-action="Create">
+            <div class="col-xl-4">
+
+                <div class="card">
+                    <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+
+                        <h2>@Model.Masterlist.givenname</h2>
+                        <h3>Purok - @Model.Masterlist.purok  Grupo - @Model.Masterlist.grupo</h3>
+                    </div>
+                </div>
+
+
+
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Mga Hinahawakang Tungkulin</h5>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Tungkulin</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{ int rowNo = 0; }
+                                @if (Model.iMaytungkulin.Count() == 0)
+                                {
+                                    <tr>
+                                        <td>@(rowNo += 1)</td>
+                                        <td>WALA PO </td>
+                                    </tr>
+                                }
+                                else
+                                {
+                                    @foreach (var tungkulin in Model.iMaytungkulin)
+                                    {
+
+                                        <tr>
+                                            <td>@(rowNo += 1)</td>
+                                            <td>@tungkulin.duty</td>
+                                            <td>
+                                                <a asp-controller="Maytungkulin" asp-action="Update" asp-route-Id=@tungkulin.entryid><span class="badge rounded-pill bg-primary">SELECT</span></a>
+                                                <a asp-controller="Maytungkulin" asp-action="Delete" asp-route-Id=@tungkulin.entryid><span class="badge rounded-pill bg-danger">DELETE</span></a>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+
+                            </tbody>
+                        </table>
+                        <!-- End Default Table Example -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-8">
+                <div class="card">
+                    <div class="card-body pt-3">
+                        <input type="number" value="@Model.Masterlist.entryid" asp-for="@Model.Maytungkulin.masterlistid" hidden>
+                        <h5 class="card-title">Personal na Impormasyon</h5>
+
+                        <div class="row mb-3">
+                            <h5 class="col-lg-3 label"><label asp-for="@Model.Maytungkulin.duty"></label></h5>
+                            <div class="col-lg-9">
+                                <select class="form-select" id="duty" aria-label="duty" placeholder="placeholder" asp-for="@Model.Maytungkulin.duty" required>
+                                    <option value=""></option>
+                                    <option value="PAMUNUAN">PAMUNUAN</option>
+                                    <option value="KNTSTSP">KNTSTSP</option>
+                                    <option value="DIAKONO">DIAKONO</option>
+                                    <option value="DIAKONESA">DIAKONESA</option>
+                                    <option value="KATIWALA NG PUROK">KATIWALA NG PUROK</option>
+                                    <option value="II KATIWALA NG PUROK">II KATIWALA NG PUROK</option>
+                                    <option value="KATIWALA NG GRUPO">KATIWALA NG GRUPO</option>
+                                    <option value="II KATIWALA NG GRUPO">II KATIWALA NG GRUPO</option>
+                                    <option value="KALIHIM NG LOKAL">KALIHIM NG LOKAL</option>
+                                    <option value="KALIHIM NG GRUPO">KALIHIM NG GRUPO</option>
+                                    <option value="MANG-AAWIT">MANG-AAWIT</option>
+                                    <option value="ORGANISTA">ORGANISTA</option>
+                                    <option value="PANANALAPI">PANANALAPI</option>
+                                    <option value="KALIHIM NG ILAW">KALIHIM NG ILAW</option>
+                                    <option value="LSP">LSP</option>
+                                    <option value="BUKLOD">BUKLOD</option>
+                                    <option value="KADIWA">KADIWA</option>
+                                    <option value="BINHI">BINHI</option>
+                                    <option value="SCAN">SCAN</option>
+                                    <option value="PNK">PNK</option>
+                                    <option value="GURO">GURO</option>
+                                    <option value="TSV">TSV</option>
+                                    <option value="CBI">CBI</option>
+                                    <option value="CEA">CEA</option>
+                                    <option value="CSD">CSD</option>
+                                    <option value="CMDPS">CMDPS</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <h5 class="col-lg-3 label"><label asp-for="@Model.Maytungkulin.section"></label></h5>
+                            <div class="col-lg-9">
+                                <input type="text" class="form-control" id="section" asp-for="@Model.Maytungkulin.section">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <h5 class="col-lg-3 label"><label asp-for="@Model.Maytungkulin.task"></label></h5>
+                            <div class="col-lg-9">
+                                <input type="text" class="form-control" id="task" asp-for="@Model.Maytungkulin.task">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <h5 class="col-lg-3 label"><label asp-for="@Model.Maytungkulin.level"></label></h5>
+                            <div class="col-lg-9">
+                                <select class="form-select" id="level" aria-label="level" placeholder="placeholder" asp-for="@Model.Maytungkulin.level">
+                                    <option value="DIST">DISTRITO</option>
+                                    <option value="LOK" selected>LOKAL</option>
+                                    <option value="PRK">PUROK</option>
+                                    <option value="GRP">GRUPO</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <h5 class="col-lg-3 label"><label asp-for="@Model.Maytungkulin.entrydate"></label></h5>
+                            <div class="col-lg-9">
+                                <input type="date" class="form-control" value="@DateTime.Now.ToString("yyyy-MM-dd")" asp-for="@Model.Maytungkulin.entrydate">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <h5 class="col-lg-3 label"><label asp-for="@Model.Maytungkulin.isactive"></label></h5>
+                            <div class="col-lg-9">
+                                <select class="form-select" id="isactive" aria-label="isactive" placeholder="placeholder" asp-for="@Model.Maytungkulin.isactive">
+                                    <option value="1" selected="selected">YES</option>
+                                    <option value="0">NO</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <h5 class="col-lg-3 label"><label asp-for="@Model.Maytungkulin.enddate"></label></h5>
+                            <div class="col-lg-9">
+                                <input type="date" class="form-control" value="@DateTime.Now.ToString("yyyy-MM-dd")" asp-for="@Model.Maytungkulin.enddate">
+                            </div>
+                        </div>
+
+                        <input type="text" id="remarks1" asp-for="@Model.Maytungkulin.remarks1" value="0" hidden />
+                        <input type="text" id="remarks2" asp-for="@Model.Maytungkulin.remarks2" value="0" hidden />
+                        <input type="text" id="remarks3" asp-for="@Model.Maytungkulin.remarks3" value="" hidden />
+                        <input type="text" id="isactive" asp-for="@Model.Maytungkulin.isactive" hidden />
+                        <input type="date" id="createdate" asp-for="@Model.Maytungkulin.createdate" value="@DateTime.Today.ToString("yyyy-MM-dd")" hidden />
+                        <input type="text" id="createby" asp-for="@Model.Maytungkulin.createby" value="@User.Identity.Name" hidden>
+                        <input type="date" id="modifieddate" asp-for="@Model.Maytungkulin.modifieddate" value="1990-01-01" hidden>
+                        <input type="text" id="modifiedby" asp-for="@Model.Maytungkulin.modifiedby" value="" hidden>
+                        <input type="text" id="isdeleted" asp-for="@Model.Maytungkulin.isdeleted" value="0" hidden>
+                    </div>
+                </div>
+
+
+
+                <div class="row mb-3">
+                    <button class="btn btn-success" type="submit"><h3>Save</h3></button>
+                </div>
+
+            </div>
+        </form>
+    </div>
+</section>

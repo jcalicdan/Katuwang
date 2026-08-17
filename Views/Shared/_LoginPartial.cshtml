@@ -1,0 +1,218 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Katuwang.Areas.Identity.Data
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+
+
+    <partial name="_TopBar.cshtml" />
+
+
+    <!-- ======= Sidebar ======= -->
+    <aside id="sidebar" class="sidebar">
+
+        <ul class="sidebar-nav" id="sidebar-nav">
+
+            <li class="nav-item collapsed">
+                <a class="nav-link " asp-area="" asp-controller="Home" asp-action="Index">
+                    <i class="bi bi-grid"></i> <span>Dashboard</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#senso-nav" data-bs-toggle="collapse">
+                    <i class="bi bi-menu-button-wide"></i><span>Senso</span><i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul id="senso-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a asp-area="" asp-controller="Masterlist" asp-action="Index">
+                            <i class="bi bi-circle"></i><span>Masterlist</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-area="" asp-controller="Transfer" asp-action="IN_Index">
+                            <i class="bi bi-circle"></i><span>Transfer In</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-area="" asp-controller="Transfer" asp-action="OUT_Index">
+                            <i class="bi bi-circle"></i><span>Transfer OUT</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-area="" asp-controller="Masterlist" asp-action="Sambahayan">
+                            <i class="bi bi-circle"></i><span>Sambahayn</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#pagpapatibay-nav" data-bs-toggle="collapse">
+                    <i class="bi bi-menu-button-wide"></i><span>Pagpapatibay</span><i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul id="pagpapatibay-nav" class="nav-content collapse " data-bs-parent="#pagpapatibay-nav">
+                    <li>
+                        <a class="nav-link collapsed" data-bs-target="#ms-nav" data-bs-toggle="collapse">
+                            <i class="bi bi-caret-right-fill"></i><span>MS</span><i class="bi bi-chevron-down ms-auto"></i>
+                        </a>
+                        <ul id="ms-nav" class="nav-content collapse " data-bs-parent="#ms-nav">
+                            <li class="ms-sm-3">
+                                <a asp-area="" asp-controller="MS" asp-action="Index">
+                                    <i class="bi bi-circle"></i><span>Masterlist</span>
+                                </a>
+                                <a asp-area="" asp-controller="MS" asp-action="Select">
+                                    <i class="bi bi-circle"></i><span>Dagdag</span>
+                                </a>
+                                <a asp-area="" asp-controller="MS" asp-action="Index">
+                                    <i class="bi bi-circle"></i><span>Bawas</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="nav-link collapsed" data-bs-target="#uwp-nav" data-bs-toggle="collapse">
+                            <i class="bi bi-caret-right-fill"></i><span>UWP</span><i class="bi bi-chevron-down ms-auto"></i>
+                        </a>
+                        <ul id="uwp-nav" class="nav-content collapse " data-bs-parent="#uwp-nav">
+                            <li class="ms-sm-3">
+                                <a asp-area="" asp-controller="UWP" asp-action="Index">
+                                    <i class="bi bi-circle"></i><span>Masterlist</span>
+                                </a>
+                                <a asp-area="" asp-controller="UWP" asp-action="Select">
+                                    <i class="bi bi-circle"></i><span>Dagdag</span>
+                                </a>
+                                <a asp-area="" asp-controller="UWP" asp-action="Index">
+                                    <i class="bi bi-circle"></i><span>Bawas</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="nav-link collapsed" data-bs-target="#pms-nav" data-bs-toggle="collapse">
+                            <i class="bi bi-caret-right-fill"></i><span>PMS</span><i class="bi bi-chevron-down ms-auto"></i>
+                        </a>
+                        <ul id="pms-nav" class="nav-content collapse " data-bs-parent="#pms-nav">
+                            <li class="ms-sm-3">
+                                <a asp-area="" asp-controller="PMS" asp-action="Index">
+                                    <i class="bi bi-circle"></i><span>Masterlist</span>
+                                </a>
+                                <a asp-area="" asp-controller="PMS" asp-action="Select">
+                                    <i class="bi bi-circle"></i><span>Dagdag</span>
+                                </a>
+                                <a asp-area="" asp-controller="PMS" asp-action="Index">
+                                    <i class="bi bi-circle"></i><span>Bawas</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="nav-link collapsed" data-bs-target="#mk-nav" data-bs-toggle="collapse">
+                            <i class="bi bi-caret-right-fill"></i><span>MK</span><i class="bi bi-chevron-down ms-auto"></i>
+                        </a>
+                        <ul id="mk-nav" class="nav-content collapse " data-bs-parent="#mk-nav">
+                            <li class="ms-sm-3">
+                                <a asp-area="" asp-controller="R401" asp-action="Index">
+                                    <i class="bi bi-circle"></i><span>Masterlist</span>
+                                </a>
+                                <a asp-area="" asp-controller="R401" asp-action="Index">
+                                    <i class="bi bi-circle"></i><span>Dagdag</span>
+                                </a>
+                                <a asp-area="" asp-controller="R401" asp-action="Index">
+                                    <i class="bi bi-circle"></i><span>Bawas</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a asp-area="" asp-controller="AttendanceWeekly" asp-action="Index">
+                            <i class="bi bi-caret-right-fill"></i><span>AttendanceWeekly</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-area="" asp-controller="R401" asp-action="Index">
+                            <i class="bi bi-caret-right-fill"></i><span>Tiwalag</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-area="" asp-controller="R401" asp-action="Index">
+                            <i class="bi bi-caret-right-fill"></i><span>Balik-Loob</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-area="" asp-controller="AttendanceWeekly" asp-action="Porsyento">
+                            <i class="bi bi-circle"></i><span>Sambahayn</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#pangangalaga-nav" data-bs-toggle="collapse">
+                    <i class="bi bi-menu-button-wide"></i><span>Pangangalaga</span><i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul id="pangangalaga-nav" class="nav-content collapse " data-bs-parent="#pangangalaga-nav">
+                    <li>
+                        <a class="nav-link collapsed" data-bs-target="#mt-nav" data-bs-toggle="collapse">
+                            <i class="bi bi-caret-right-fill"></i><span>Maytungkulin</span><i class="bi bi-chevron-down ms-auto"></i>
+                        </a>
+                        <ul id="mt-nav" class="nav-content collapse " data-bs-parent="#mt-nav">
+                            <li class="ms-sm-3">
+                                <a asp-area="" asp-controller="Maytungkulin" asp-action="Index">
+                                    <i class="bi bi-circle"></i><span>Masterlist</span>
+                                </a>
+                                <a asp-area="" asp-controller="Maytungkulin" asp-action="Select">
+                                    <i class="bi bi-circle"></i><span>Dagdag</span>
+                                </a>
+                                <a asp-area="" asp-controller="Maytungkulin" asp-action="Update">
+                                    <i class="bi bi-circle"></i><span>Bawas</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="nav-link collapsed" data-bs-target="#destinado-nav" data-bs-toggle="collapse">
+                            <i class="bi bi-caret-right-fill"></i><span>Destinado</span><i class="bi bi-chevron-down ms-auto"></i>
+                        </a>
+                        <ul id="destinado-nav" class="nav-content collapse " data-bs-parent="#destinado-nav">
+                            <li class="ms-sm-3">
+                                <a asp-area="" asp-controller="Destinado" asp-action="Index">
+                                    <i class="bi bi-circle"></i><span>Masterlist</span>
+                                </a>
+                                <a asp-area="" asp-controller="Destinado" asp-action="Create">
+                                    <i class="bi bi-circle"></i><span>Create</span>
+                                </a>
+                                <a asp-area="" asp-controller="Destinado" asp-action="Update">
+                                    <i class="bi bi-circle"></i><span>Update</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#reports-nav" data-bs-toggle="collapse">
+                    <i class="bi bi-menu-button-wide"></i><span>Reports</span><i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul id="reports-nav" class="nav-content collapse " data-bs-parent="#reports-nav">
+                    <li>
+                        <a asp-area="" asp-controller="Report" asp-action="Index">
+                            <i class="bi bi-circle"></i><span>Reports</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" asp-area="" asp-controller="SystemParameter" asp-action="Index">
+                    <i class="bi bi-grid"></i> <span>Settings</span>
+                </a>
+            </li>
+
+        </ul>
+
+    </aside>
+    <!-- End Sidebar-->
+
+
+}

@@ -1,0 +1,47 @@
+﻿
+@model IEnumerable<Katuwang.Models.Destinado>
+
+@{
+    ViewData["Title"] = "PANGANGALAGA";
+    ViewData["Breadcrumps"] = "PANGANGALAGA / Destinado";
+    ViewData["Header"] = "Mga Destinado sa Lokal";
+}
+
+<div class="card">
+    <a class="btn btn-outline-success m-3" asp-area="" asp-controller="Masterlist" asp-action="Create"><i class="bi bx-image-add me-1"></i> Add Record</a>
+    <div class="card-body">
+        <h5 class="card-title">Mga MS</h5>
+        <table class="table table-borderless datatable">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Middle Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">Petsa NaDestino</th>
+                    <th scope="col">Assigned Number</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{ int rowNo = 0; }
+                @foreach (var person in Model)
+                {
+                    <tr>
+                        <td>@(rowNo += 1)</td>
+                        <td>@person.givenname @person.suffix</td>
+                        <td>@person.mothersname</td>
+                        <td>@person.fathersname</td>
+                        <td>@person.entrydate</td>
+                        <td>@person.assignednum</td>
+                        <td>
+                            <a asp-controller="Destinado" asp-action="Update" asp-route-Id="@person.entryid"><span class="badge rounded-pill bg-primary">SELECT</span></a>
+                            <a asp-controller="Destinado" asp-action="Delete" asp-route-Id="@person.entryid"><span class="badge rounded-pill bg-danger">DELETE</span></a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <!-- End Default Table Example -->
+    </div>
+</div>

@@ -1,0 +1,167 @@
+﻿@model Katuwang.Models.Destinado
+
+@{
+    ViewData["Title"] = "PANGANGALAGA";
+    ViewData["Breadcrumps"] = "PANGANGALAGA / Destinado / Create";
+    ViewData["Header"] = "Magdagdag ng Destinado";
+}
+
+<section class="section profile">
+    <div class="row mb-1">
+        <form class="row mb-1 g-1 needs-validation" novalidate method="post" asp-action="Create">
+
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-body pt-1">
+                        <br />
+
+                        <div class="row mb-3">
+                            <h5 class="col-lg-3 label"><label asp-for="@Model.givenname"></label></h5>
+                            <div class="col-lg-9">
+                                <input type="text" class="form-control" id="givenname" asp-for="@Model.givenname" required>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <h5 class="col-lg-3 label"><label asp-for="@Model.mothersname"></label></h5>
+                            <div class="col-lg-9">
+                                <input type="text" class="form-control" id="mothersname" asp-for="@Model.mothersname">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <h5 class="col-lg-3 label"><label asp-for="@Model.fathersname"></label></h5>
+                            <div class="col-lg-9">
+                                <input type="text" class="form-control" id="fathersname" asp-for="@Model.fathersname" required>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <h5 class="col-lg-3 label"><label asp-for="@Model.suffix"></label></h5>
+                            <div class="col-lg-9">
+                                <select class="form-select" id="suffix" aria-label="Suffix" placeholder="placeholder" asp-for="suffix">
+                                    <option value=""></option>
+                                    <option value="Jr.">JR.</option>
+                                    <option value="Sr.">SR.</option>
+                                    <option value="I">I</option>
+                                    <option value="II">II</option>
+                                    <option value="III">III</option>
+                                    <option value="IV">IV</option>
+                                    <option value="V">V</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <h5 class="col-lg-3 label"><label asp-for="@Model.type"></label></h5>
+                            <div class="col-lg-9">
+                                <select class="form-select" id="type" aria-label="type" placeholder="placeholder" asp-for="@Model.type">
+                                    <option value="2ND YEAR">2ND YEAR</option>
+                                    <option value="3RD YEAR">3RD YEAR</option>
+                                    <option value="4TH YEAR">4TH YEAR</option>
+                                    <option value="REGULAR-FT">REGULAR-FT</option>
+                                    <option value="REGULAR-CVW">REGULAR-CVW</option>
+                                    <option value="MINISTRO-FT">MINISTRO-FT</option>
+                                    <option value="MINISTRO-CVW">MINISTRO-CVW</option>
+                                    <option value="PASTOR-FT">PASTOR-FT</option>
+                                    <option value="PASTOR-CVW">PASTOR-CVW</option>
+                                </select>
+                            </div>
+                        </div>
+
+
+                        <div class="row mb-3">
+                            <h5 class="col-lg-3 label"><label asp-for="@Model.assignednum"></label></h5>
+                            <div class="col-lg-9">
+                                <input type="text" class="form-control" id="assignednum" asp-for="@Model.assignednum">
+                            </div>
+                        </div>
+
+
+                        <div class="row mb-3">
+                            <h5 class="col-lg-3 label"><label asp-for="@Model.entrydate"></label></h5>
+                            <div class="col-lg-9">
+                                <input type="date" class="form-control" id="entrydate" asp-for="@Model.entrydate">
+                            </div>
+                        </div>
+
+
+                        <div class="row mb-3">
+                            <h5 class="col-lg-3 label"><label asp-for="@Model.enddate"></label></h5>
+                            <div class="col-lg-9">
+                                <input type="date" class="form-control" id="enddate" value="1990-01-01" asp-for="@Model.enddate">
+                            </div>
+                        </div>
+
+
+                        <div class="row mb-3">
+                            <h5 class="col-lg-3 label"><label asp-for="@Model.purok"></label></h5>
+                            <div class="col-lg-9">
+                                <input type="number" class="form-control" id="purok" asp-for="@Model.purok">
+                            </div>
+                        </div>
+
+
+                        <div class="row mb-3">
+                            <h5 class="col-lg-3 label"><label asp-for="@Model.grupostart"></label></h5>
+                            <div class="col-lg-9">
+                                <input type="number" class="form-control" id="grupostart" asp-for="@Model.grupostart">
+                            </div>
+                        </div>
+
+
+                        <div class="row mb-3">
+                            <h5 class="col-lg-3 label"><label asp-for="@Model.grupoend"></label></h5>
+                            <div class="col-lg-9">
+                                <input type="number" class="form-control" id="grupoend" asp-for="@Model.grupoend">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <h5 class="col-lg-3 label"><label asp-for="@Model.isactive"></label></h5>
+                            <div class="col-lg-9">
+                                <select class="form-select" id="ismk" aria-label="isactive" placeholder="placeholder" asp-for="@Model.isactive">
+                                    </">
+                                    <option value="1">YES</option>
+                                    <option value="0">NO</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <h5 class="col-lg-3 label"><label asp-for="@Model.remarks1"></label></h5>
+                            <div class="col-lg-9">
+                                <input type="text" class="form-control" id="remarks1" asp-for="@Model.remarks1">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <h5 class="col-lg-3 label"><label asp-for="@Model.remarks2"></label></h5>
+                            <div class="col-lg-9">
+                                <input type="text" class="form-control" id="remarks2" asp-for="@Model.remarks2">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <h5 class="col-lg-3 label"><label asp-for="@Model.remarks3"></label></h5>
+                            <div class="col-lg-9">
+                                <input type="text" class="form-control" id="remarks3" asp-for="@Model.remarks3">
+                            </div>
+                        </div>
+
+
+                        <input type="date" id="createdate" asp-for="@Model.createdate" value="@DateTime.Today.ToString("yyyy-MM-dd")" hidden>
+                        <input type="text" id="createby" asp-for="@Model.createby" value="@User.Identity.Name" hidden>
+                        <input type="date" id="modifieddate" asp-for="@Model.modifieddate" value="1990-01-01" hidden>
+                        <input type="text" id="modifiedby" asp-for="@Model.modifiedby" value="" hidden>
+                        <input type="text" id="isdeleted" asp-for="@Model.isdeleted" value="0" hidden>
+                    </div>
+                </div>
+
+            </div>
+            <div class="d-grid">
+                <button class="btn btn-sm btn-success" type="submit"><h4>Save</h4></button>
+            </div>
+        </form>
+    </div>
+</section>

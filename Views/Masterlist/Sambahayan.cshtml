@@ -1,0 +1,122 @@
+﻿
+@model IEnumerable<Katuwang.Models.Masterlist>
+@{
+    ViewData["Title"] = "SENSO";
+    ViewData["Breadcrumps"] = "SENSO / Sambahayn ";
+    ViewData["Header"] = "Masterlist ng lahat ng mga Sambahayan";
+}
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Small tables</h5>
+        <p>Add <code>.table-sm</code> to make any <code>.table</code> more compact by cutting all cell padding in half.</p>
+        <!-- Small tables -->
+        <table class="table table-hover table-sm">
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Purok</th>
+                    <th scope="col">Grupo</th>
+                    <th scope="col">Sambahayan</th>
+                    <th scope="col">Relasyon</th>
+                    <th scope="col">Kapisanan</th>
+                    <th scope="col">Change</th>
+                    <th scope="col">Update</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{ var prev = 0; }
+                @foreach (var person in Model)
+                {
+                <tr>
+                    <td hidden>@person.entryid</td>
+                    <td>
+                        @if (@person.spousename == "" | @person.spousename == null)
+                        {
+                            @if (@person.fathersname == "NODATA")
+                            {
+                                <span>@person.givenname @person.mothersname</span>
+                            }
+                            else
+                            {
+                                <span>@person.givenname @person.fathersname</span>
+                            }
+                        }
+                        else
+                        {
+                            <span>@person.givenname @person.spousename</span>
+                        }
+                    </td>
+                    <td>@person.purok</td>
+                    <td>@person.grupo</td>
+                    <td><input type="number" class="form-control" id="sambahayan-@person.entryid" value="@person.sambahayan"></td>
+                    <td>@person.relasyon</td>
+                    <td>@person.organization</td>
+                    <td id="GetRelasyon">
+                        <div class="col-sm-12">
+                            <select class="form-select" id="relasyon-@person.entryid" aria-label="relasyon">
+                                <option value=" "> </option>
+                                <option value="IND">INDIVIDUAL</option>
+                                <option value="PANGULO">PANGULO</option>
+                                <option value="ASAWA">ASAWA</option>
+                                <option value="AMA">AMA</option>
+                                <option value="INA">INA</option>
+                                <option value="ANAK">ANAK</option>
+                                <option value="KAPATID">KAPATID</option>
+                                <option value="LOLO">LOLO</option>
+                                <option value="LOLA">LOLA</option>
+                                <option value="APO">APO</option>
+                                <option value="TITO">TITO</option>
+                                <option value="TITA">TITA</option>
+                                <option value="PAMANGKIN">PAMANGKIN</option>
+                                <option value="PINSAN">PINSAN</option>
+                                <option value="BIYANAN">BIYANAN</option>
+                                <option value="HIPAG">HIPAG</option>
+                                <option value="BALAE">BALAE</option>
+                                <option value="BAYAW">BAYAW</option>
+                                <option value="BILAS">BILAS</option>
+                                <option value="KASAMBAHAY">KASAMBAHAY</option>
+                            </select>
+                        </div>
+                    </td>
+                    <td><button type="button" id="UpdateRelasyon" class="btn btn-primary rounded-pill btn-sm">Save</button></td>
+
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    $(document).on('click', '#UpdateRelasyon', function () {
+        var entryId = $(this).closest('tr').find('td:first').text();
+        var relasyon = $("#relasyon-" + entryId + ">option:selected").val();
+        var sambahayan = $("#sambahayan-" + entryId).val();
+        $('#loading').modal('show');
+
+        // Add a delay of 1 second before sending the AJAX request
+        setTimeout(function() {
+            $.ajax({
+                url: '@Url.Action("UpdateRelasyon", "Masterlist")',
+                type: 'POST',
+                data: { entryId: entryId, relasyon: relasyon, sambahayan: sambahayan  },
+                success: function (result) {
+                    $('#loading').modal('hide');
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.log(textStatus + ': ' + errorThrown);
+                }
+            });
+        }, 1000);
+    });
+
+
+    $(document).on('click', '#GetRelasyon', function () {
+        var entryId = $(this).closest('tr').find('td:first').text();
+        $("#relasyon-" + entryId).val($(this).closest('tr').find('td:eq(5)').text());
+     
+
+    });
+
+</script>

@@ -1,0 +1,256 @@
+﻿@model Katuwang.Models.Masterlist
+@{
+    ViewData["Title"] = "SENSO";
+    ViewData["Breadcrumps"] = "SENSO / Transfer In / Create";
+    ViewData["Header"] = "Magpapatala sa Lokal";
+}
+
+<div class="card">
+
+    <div class="card-body">
+        <br />
+        <h4>Pansariling Impormasyon</h4>
+        <!-- Floating Labels Form -->
+        <form class="row g-3 needs-validation" novalidate method="post" asp-action="Create">
+            <div class="col-md-3">
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="givenname" placeholder="placeholder" oninput="this.value = this.value.toUpperCase()" required asp-for="givenname">
+                    <div class="invalid-feedback">
+                        Punan ang <label for="givenname" asp-for="givenname"></label>.
+                    </div>
+                    <label for="givenname" asp-for="givenname"></label>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="mothersname" placeholder="placeholder" oninput="this.value = this.value.toUpperCase()" required asp-for="mothersname">
+                    <div class="invalid-feedback">
+                        Punan ang <label for="givenname" asp-for="mothersname"></label>.
+                    </div>
+                    <label for="mothersname" asp-for="mothersname"></label>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="fathersname" placeholder="placeholder" oninput="this.value = this.value.toUpperCase()" required asp-for="fathersname">
+                    <div class="invalid-feedback">
+                        Punan ang <label for="givenname" asp-for="fathersname"></label>.
+                    </div>
+                    <label for="fathersname" asp-for="fathersname"></label>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="spousename" placeholder="placeholder" oninput="this.value = this.value.toUpperCase()" asp-for="spousename">
+                    <label for="spousename" asp-for="spousename"></label>
+                </div>
+            </div>
+            <div class="col-md-1">
+                <div class="form-floating">
+                    <select class="form-select" id="suffix" aria-label="Suffix" placeholder="placeholder" asp-for="suffix">
+                        <option value=""></option>
+                        <option value="Jr.">JR.</option>
+                        <option value="Sr.">SR.</option>
+                        <option value="I">I</option>
+                        <option value="II">II</option>
+                        <option value="III">III</option>
+                        <option value="IV">IV</option>
+                        <option value="V">V</option>
+                    </select>
+                    <label for="suffix" asp-for="suffix"></label>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-floating">
+                    <select class="form-select" id="gender" aria-label="Gender" placeholder="placeholder" asp-for="gender">
+                        <option value="M">Lalake</option>
+                        <option value="F" selected>Babae</option>
+                    </select>
+                    <label for="gender" asp-for="gender"></label>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-floating">
+                    <select class="form-select" id="civilstatus" aria-label="CivilStatus" placeholder="placeholder" asp-for="civilstatus">
+                        <option value="S">Single</option>
+                        <option value="M">Married</option>
+                        <option value="W">Widow</option>
+                        <option value="P">Separated</option>
+                        <option value="A">Annulled</option>
+                        <option value="D">Divorced</option>
+                    </select>
+                    <label for="civilstatus" asp-for="civilstatus"></label>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-floating">
+                    <input type="date" class="form-control" value="@DateTime.Today.ToString("yyyy-MM-dd")" asp-for="birthdate">
+                    <label for="floatingName" asp-for="birthdate"></label>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="spouse" placeholder="placeholder" asp-for="spouse">
+                    <label for="spouse" asp-for="spouse"></label>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-floating">
+                    <input type="date" class="form-control" value="1900-01-01" placeholder="placeholder" asp-for="weddingdate">
+                    <label for="weddingdate" asp-for="weddingdate"></label>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="contactnum" placeholder="placeholder" asp-for="contactnum">
+                    <label for="contactnum" asp-for="contactnum"></label>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="address" placeholder="placeholder" asp-for="address">
+                    <label for="address" asp-for="address"></label>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-floating">
+                    <select class="form-select" id="barangay" aria-label="CivilStatus" placeholder="placeholder" asp-for="barangay">
+                        <option value="1" selected>Bahay Toro</option>
+                        <option value="2">Project 6</option>
+                        <option value="3">Pag-asa</option>
+                        <option value="4">Bago Bantay</option>
+                        <option value="5">Culiat</option>
+                        <option value="6">Vasra</option>
+                    </select>
+                    <label for="barangay" asp-for="barangay"></label>
+                </div>
+            </div>
+            <div class="col-md-1">
+                <div class="form-floating">
+                    <input type="number" class="form-control" id="purok" placeholder="placeholder" required asp-for="purok">
+                    <div class="invalid-feedback">
+                        Punan ang <label for="purok" asp-for="purok"></label>.
+                    </div>
+                    <label for="purok" asp-for="purok"></label>
+                </div>
+            </div>
+            <div class="col-md-1">
+                <div class="form-floating">
+                    <input type="number" class="form-control" id="grupo" placeholder="placeholder" required asp-for="grupo">
+                    <div class="invalid-feedback">
+                        Punan ang <label for="grupo" asp-for="grupo"></label>.
+                    </div>
+                    <label for="grupo" asp-for="grupo"></label>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-floating">
+                    <input type="date" class="form-control" value="1900-01-01" placeholder="placeholder" asp-for="baptismdate">
+                    <label for="baptismdate" asp-for="baptismdate"></label>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="firstlokal" placeholder="placeholder" value="Mindanao Avenue" required asp-for="firstlokal">
+                    <div class="invalid-feedback">
+                        Punan ang <label for="firstlokal" asp-for="firstlokal"></label>.
+                    </div>
+                    <label for="firstlokal" asp-for="firstlokal"></label>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="firstdistrito" placeholder="placeholder" value="Central" required asp-for="firstdistrito">
+                    <div class="invalid-feedback">
+                        Punan ang <label for="firstdistrito" asp-for="firstdistrito"></label>.
+                    </div>
+                    <label for="firstdistrito" asp-for="firstdistrito"></label>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="minister" placeholder="placeholder" asp-for="minister">
+                    <div class="invalid-feedback">
+                        Punan ang <label for="minister" asp-for="minister"></label>.
+                    </div>
+                    <label for="minister" asp-for="minister"></label>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-floating">
+                    <select class="form-select" id="organization" aria-label="Organization" placeholder="placeholder" asp-for="organization">
+                        <option value="BUKLOD">BUKLOD</option>
+                        <option value="KADIWA">KADIWA</option>
+                        <option value="BINHI">BINHI</option>
+                        <option value="HDB">HDB</option>
+                    </select>
+                    <label for="organization" asp-for="organization"></label>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-floating">
+                    <input type="number" class="form-control" id="sambahayan" placeholder="placeholder" asp-for="sambahayan" value="1">
+                    <label for="sambahayan" asp-for="sambahayan"></label>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-floating">
+                    <select class="form-select" id="relasyon" aria-label="Relasyon" placeholder="placeholder" asp-for="relasyon">
+                        <option value="IND">INDIVIDUAL</option>
+                        <option value="PANGULO">PANGULO</option>
+                        <option value="ASAWA">ASAWA</option>
+                        <option value="AMA">AMA</option>
+                        <option value="INA">INA</option>
+                        <option value="ANAK">ANAK</option>
+                        <option value="KAPATID">KAPATID</option>
+                        <option value="LOLO">LOLO</option>
+                        <option value="LOLA">LOLA</option>
+                        <option value="APO">APO</option>
+                        <option value="TITO">TITO</option>
+                        <option value="TITA">TITA</option>
+                        <option value="PAMANGKIN">PAMANGKIN</option>
+                        <option value="BIYANAN">BIYANAN</option>
+                        <option value="BAYAW">BAYAW</option>
+                        <option value="HIPAG">HIPAG</option>
+                        <option value="BALE">BALE</option>
+                        <option value="KASAMBAHAY">KASAMBAHAY</option>
+                    </select>
+                    <label for="relasyon" asp-for="relasyon"></label>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="entrynum" placeholder="placeholder" asp-for="entrynum">
+                    <label for="entrynum" asp-for="entrynum"></label>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="idnum" placeholder="placeholder" maxlength="13" asp-for="idnum">
+                    <label for="idnum" asp-for="idnum"></label>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="entrynum" placeholder="placeholder" maxlength="13" oninput="this.value = this.value.toUpperCase()" asp-for="registrynum">
+                    <label for="registrynum" asp-for="registrynum"></label>
+                </div>
+            </div>
+
+            <input type="number" id="newpurok" asp-for="newpurok" value="0" hidden>
+            <input type="number" id="newgrupo" asp-for="newgrupo" value="0" hidden>
+            <input type="number" id="isactive" asp-for="isactive" value="0" hidden>
+            <input type="date" id="createdate" asp-for="createdate" value="@DateTime.Today.ToString("yyyy-MM-dd")" hidden>
+            <input type="text" id="createby" asp-for="createby" value="@User.Identity.Name" hidden>
+            <input type="date" id="modifieddate" asp-for="modifieddate" value="1990-01-01" hidden>
+            <input type="text" id="modifiedby" asp-for="modifiedby" value="" hidden>
+            <input type="text" id="isdeleted" asp-for="isdeleted" value="0" hidden>
+
+            <div class="d-grid gap-2 mt-3">
+                <button class="btn btn-primary" type="submit">Save</button>
+            </div>
+            <hr />
+        </form><!-- End floating Labels Form -->
+
+    </div>
+</div>

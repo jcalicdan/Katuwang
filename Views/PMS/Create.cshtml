@@ -1,0 +1,130 @@
+﻿@model Katuwang.Models.ViewModel.MasterlistVM
+
+@{
+    ViewData["Title"] = "PAGPAPATIBAY";
+    ViewData["Breadcrumps"] = "PAGPAPATIBAY / PMS / Create";
+    ViewData["Header"] = "Dagdag PMS";
+    ViewData["Index"] = "Select";
+}
+
+<section class="section profile">
+    <div class="row mb-1">
+        <form class="row mb-1 g-1 needs-validation" novalidate method="post" asp-action="Create">
+
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-body pt-1">
+
+                        <h5 class="card-title">@Model.Masterlist.fathersname, @Model.Masterlist.givenname @Model.Masterlist.suffix @Model.Masterlist.mothersname - @Model.Masterlist.spousename</h5>
+                        <input type="number" value="@Model.Masterlist.entryid" asp-for="@Model.R401.masterlistid" hidden>
+                        <input type="text" value="PMS" asp-for="@Model.R401.status" hidden>
+                        <div class="row mb-3">
+                            <h5 class="col-lg-3 label"><label asp-for="@Model.R401.entrydate"></label></h5>
+                            <div class="col-lg-9">
+                                <input type="date" class="form-control" value="@DateTime.Today.ToString("yyyy-MM-dd")" asp-for="@Model.R401.entrydate">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <h5 class="col-lg-3 label"><label asp-for="@Model.R401.year"></label></h5>
+                            <div class="col-lg-9">
+                                <input type="number" class="form-control" id="year" value="@DateTime.Today.ToString("yyyy")" asp-for="@Model.R401.year" required>
+                            </div>
+                        </div>
+
+
+
+                        <div class="row mb-3">
+                            <h5 class="col-lg-3 label"><label asp-for="@Model.R401.month"></label></h5>
+                            <div class="col-lg-9">
+                                <select class="form-select" id="code" aria-label="code" placeholder="placeholder" asp-for="@Model.R401.month">
+                                    <option value="01">JANUARY</option>
+                                    <option value="02" selected>FEBRUARY</option>
+                                    <option value="03">MARCH</option>
+                                    <option value="04">APRIL</option>
+                                    <option value="05">MAY</option>
+                                    <option value="06">JUNE</option>
+                                    <option value="07">JULY</option>
+                                    <option value="08">AUGUST</option>
+                                    <option value="09">SEPTEMBER</option>
+                                    <option value="10">OCTOBER</option>
+                                    <option value="11">NOVEMBER</option>
+                                    <option value="12">DECEMBER</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <h5 class="col-lg-3 label"><label asp-for="@Model.R401.code"></label></h5>
+                            <div class="col-lg-9">
+                                <select class="form-select" id="code" aria-label="code" placeholder="placeholder" asp-for="@Model.R401.code">
+                                    <option value="A">DATING SAKOP</option>
+                                    <option value="B">BAGONG DAGDAG</option>
+                                    <option value="C+">LIPAT SAKOP</option>
+                                </select>
+                            </div>
+                        </div>
+
+
+                        <div class="row mb-3">
+                            <h5 class="col-lg-3 label"><label asp-for="@Model.R401.destinadoid"></label></h5>
+                            <div class="col-lg-9">
+                                <select class="form-select" id="destinadoid" aria-label="destinadoid" placeholder="placeholder" asp-for="@Model.R401.destinadoid">
+                                    @foreach (var destinado in Model.iDestinado)
+                                    {
+                                        <option value="@destinado.entryid">@destinado.givenname @destinado.fathersname</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+
+
+                        <div class="row mb-3">
+                            <h5 class="col-lg-3 label"><label asp-for="@Model.R401.ismk"></label></h5>
+                            <div class="col-lg-9">
+                                <select class="form-select" id="ismk" aria-label="ismk" placeholder="placeholder" asp-for="@Model.R401.ismk">
+                                    <option value="1">YES</option>
+                                    <option value="0">NO</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <h5 class="col-lg-3 label"><label asp-for="@Model.R401.remarks1"></label></h5>
+                            <div class="col-lg-9">
+                                <input type="text" class="form-control" id="remarks1" asp-for="@Model.R401.remarks1">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <h5 class="col-lg-3 label"><label asp-for="@Model.R401.remarks2"></label></h5>
+                            <div class="col-lg-9">
+                                <input type="text" class="form-control" id="remarks2" asp-for="@Model.R401.remarks2">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <h5 class="col-lg-3 label"><label asp-for="@Model.R401.remarks3"></label></h5>
+                            <div class="col-lg-9">
+                                <input type="text" class="form-control" id="remarks3" asp-for="@Model.R401.remarks3">
+                            </div>
+                        </div>
+
+
+                        <input type="date" id="createdate" asp-for="@Model.R401.createdate" value="@DateTime.Today.ToString("yyyy-MM-dd")" hidden>
+                        <input type="text" id="createby" asp-for="@Model.R401.createby" value="@User.Identity.Name" hidden>
+                        <input type="date" id="modifieddate" asp-for="@Model.R401.modifieddate" value="1990-01-01" hidden>
+                        <input type="text" id="modifiedby" asp-for="@Model.R401.modifiedby" value="" hidden>
+                        <input type="text" id="isdeleted" asp-for="@Model.R401.isdeleted" value="0" hidden>
+
+                        <partial name="../Shared/_Masterlist.cshtml" />
+                    </div>
+                </div>
+
+            </div>
+            <div class="d-grid">
+                <button class="btn btn-sm btn-success" type="submit"><h4>Save</h4></button>
+            </div>
+        </form>
+    </div>
+</section>

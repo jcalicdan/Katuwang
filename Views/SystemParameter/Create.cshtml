@@ -1,0 +1,74 @@
+﻿@model Katuwang.Models.SystemParameter
+
+@{
+    ViewData["Title"] = "SETTINGS";
+    ViewData["Breadcrumps"] = "SETTINGS / Create ";
+    ViewData["Header"] = "Create Sytem Parameter";
+}
+
+<section class="section profile">
+    <div class="row mb-1">
+        <form class="row mb-1 g-1 needs-validation" novalidate method="post" asp-action="Create">
+
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-body pt-1">
+                        <br />
+
+                        <div class="row mb-3">
+                            <h5 class="col-lg-3 label"><label asp-for="@Model.group"></label></h5>
+                            <div class="col-lg-9">
+                                <input type="text" class="form-control" id="group" oninput="this.value = this.value.toUpperCase()" asp-for="@Model.group" required>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <h5 class="col-lg-3 label"><label asp-for="@Model.level"></label></h5>
+                            <div class="col-lg-9">
+                                <input type="text" class="form-control" id="level" oninput="this.value = this.value.toUpperCase()" asp-for="@Model.level">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <h5 class="col-lg-3 label"><label asp-for="@Model.name"></label></h5>
+                            <div class="col-lg-9">
+                                <input type="text" class="form-control" id="name" oninput="this.value = this.value.toUpperCase()" asp-for="@Model.name" required>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <h5 class="col-lg-3 label"><label asp-for="@Model.code"></label></h5>
+                            <div class="col-lg-9">
+                                <input type="text" class="form-control" id="code" oninput="this.value = this.value.toUpperCase()" asp-for="@Model.code" required>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <h5 class="col-lg-3 label"><label asp-for="@Model.description"></label></h5>
+                            <div class="col-lg-9">
+                                <input type="text" class="form-control" id="description" asp-for="@Model.description" required>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <h5 class="col-lg-3 label"><label asp-for="@Model.value"></label></h5>
+                            <div class="col-lg-9">
+                                <input type="text" class="form-control" id="value" asp-for="@Model.value" required>
+                            </div>
+                        </div>
+
+                        <input type="date" id="createdate" asp-for="@Model.createdate" value="@DateTime.Today.ToString("yyyy-MM-dd")" hidden>
+                        <input type="text" id="createby" asp-for="@Model.createby" value="@User.Identity.Name" hidden>
+                        <input type="date" id="modifieddate" asp-for="@Model.modifieddate" value="1990-01-01" hidden>
+                        <input type="text" id="modifiedby" asp-for="@Model.modifiedby" value="" hidden>
+                        <input type="text" id="isdeleted" asp-for="@Model.isdeleted" value="0" hidden>
+                    </div>
+                </div>
+
+            </div>
+            <div class="d-grid">
+                <button class="btn btn-sm btn-success" type="submit"><h4>Save</h4></button>
+            </div>
+        </form>
+    </div>
+</section>

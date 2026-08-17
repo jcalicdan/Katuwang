@@ -1,0 +1,26 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Katuwang.Areas.Identity.Data
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <!-- ======= Footer ======= -->
+<footer id="footer" class="footer">
+    <div class="copyright">
+        &copy; Copyright <strong><span>Katuwang 2022</span></strong>. All Rights Reserved
+    </div>
+    <div class="credits">
+        Designed by <a href="#">griffonage</a>
+    </div>
+</footer><!-- End Footer -->
+}
+
+<div class="modal fade" id="loading" tabindex="-1" role="status" aria-labelledby="loading" aria-hidden="true" >
+    <div class="modal-dialog modal-dialog-centered justify-content-center" role="document">
+        <div class="spinner-grow text-light" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+</div>

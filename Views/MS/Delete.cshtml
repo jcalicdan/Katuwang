@@ -1,0 +1,129 @@
+﻿@model Katuwang.Models.ViewModel.MasterlistVM
+
+@{
+    ViewData["Title"] = "PANGANGALAGA";
+    ViewData["Breadcrumps"] = "PANGANGALAGA / MS / Delete";
+    ViewData["Header"] = "Delete Record  ng MS";
+}
+
+<section class="section profile">
+    <div class="row mb-1">
+        <form class="row mb-1 g-1 needs-validation" novalidate method="post" asp-action="Delete">
+
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-body pt-1">
+
+                        <h5 class="card-title">@Model.Masterlist.fathersname, @Model.Masterlist.givenname @Model.Masterlist.suffix @Model.Masterlist.mothersname - @Model.Masterlist.spousename</h5>
+                        <input type="number" value="@Model.R401.entryid" asp-for="@Model.R401.entryid" hidden>
+                        <input type="number" value="@Model.Masterlist.entryid" asp-for="@Model.R401.masterlistid" hidden>
+                        <input type="text" value="MS" asp-for="@Model.R401.status" hidden>
+                        <div class="row mb-3">
+                            <h5 class="col-lg-3 label"><label asp-for="@Model.R401.entrydate"></label></h5>
+                            <div class="col-lg-9">
+                                <input type="date" class="form-control" value="@Model.R401.entrydate.ToString("yyyy-MM-dd")" asp-for="@Model.R401.entrydate" hidden>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <h5 class="col-lg-3 label"><label asp-for="@Model.R401.year"></label></h5>
+                            <div class="col-lg-9">
+                                <input type="number" class="form-control" id="year" value="@Model.R401.year" asp-for="@Model.R401.year" disabled>
+                            </div>
+                        </div>
+
+
+
+                        <div class="row mb-3">
+                            <h5 class="col-lg-3 label"><label asp-for="@Model.R401.month"></label></h5>
+                            <div class="col-lg-9">
+                                <select class="form-select" id="code" aria-label="code" placeholder="placeholder" asp-for="@Model.R401.month" disabled>
+                                    <option value="01">JANUARY</option>
+                                    <option value="02">FEBRUARY</option>
+                                    <option value="03">MARCH</option>
+                                    <option value="04">APRIL</option>
+                                    <option value="05">MAY</option>
+                                    <option value="06">JUNE</option>
+                                    <option value="07">JULY</option>
+                                    <option value="08">AUGUST</option>
+                                    <option value="09">SEPTEMBER</option>
+                                    <option value="10">OCTOBER</option>
+                                    <option value="11">NOVEMBER</option>
+                                    <option value="12">DECEMBER</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <h5 class="col-lg-3 label"><label asp-for="@Model.R401.code"></label></h5>
+                            <div class="col-lg-9">
+                                <select class="form-select" id="code" aria-label="code" placeholder="placeholder" asp-for="@Model.R401.code" disabled>
+                                    </">
+                                    <option value="B">BAGONG DAGDAG</option>
+                                    <option value="C+">LIPAT SAKOP</option>
+                                </select>
+                            </div>
+                        </div>
+
+
+                        <div class="row mb-3">
+                            <h5 class="col-lg-3 label"><label asp-for="@Model.R401.destinadoid"></label></h5>
+                            <div class="col-lg-9">
+                                <select class="form-select" id="destinadoid" aria-label="destinadoid" placeholder="placeholder" asp-for="@Model.R401.destinadoid" disabled>
+                                    </">
+                                    <option value="0">RAMIL CRUZ</option>
+                                </select>
+                            </div>
+                        </div>
+
+
+                        <div class="row mb-3">
+                            <h5 class="col-lg-3 label"><label asp-for="@Model.R401.ismk"></label></h5>
+                            <div class="col-lg-9">
+                                <select class="form-select" id="ismk" aria-label="ismk" placeholder="placeholder" asp-for="@Model.R401.ismk" disabled>
+                                    </">
+                                    <option value="1">YES</option>
+                                    <option value="0">NO</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <h5 class="col-lg-3 label"><label asp-for="@Model.R401.remarks1"></label></h5>
+                            <div class="col-lg-9">
+                                <input type="text" class="form-control" id="remarks1" asp-for="@Model.R401.remarks1" disabled>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <h5 class="col-lg-3 label"><label asp-for="@Model.R401.remarks2"></label></h5>
+                            <div class="col-lg-9">
+                                <input type="text" class="form-control" id="remarks2" asp-for="@Model.R401.remarks2" disabled>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <h5 class="col-lg-3 label"><label asp-for="@Model.R401.remarks3"></label></h5>
+                            <div class="col-lg-9">
+                                <input type="text" class="form-control" id="remarks3" asp-for="@Model.R401.remarks3" disabled>
+                            </div>
+                        </div>
+
+
+                        <input type="date" id="createdate" asp-for="@Model.R401.createdate" value="@Model.R401.createdate.ToString("yyyy-MM-dd")" hidden>
+                        <input type="text" id="createby" asp-for="@Model.R401.createby" value="@Model.R401.createby" hidden>
+                        <input type="date" id="modifieddate" asp-for="@Model.R401.modifieddate" value="@DateTime.Today.ToString("yyyy-MM-dd")" hidden>
+                        <input type="text" id="modifiedby" asp-for="@Model.R401.modifiedby" value="@User.Identity.Name" hidden>
+                        <input type="text" id="isdeleted" asp-for="@Model.R401.isdeleted" value="1" hidden>
+
+                        <partial name="../Shared/_Masterlist.cshtml" />
+                    </div>
+                </div>
+
+            </div>
+            <div class="d-grid">
+                <button class="btn btn-sm btn-danger" type="submit"><h4>Delete</h4></button>
+            </div>
+        </form>
+    </div>
+</section>

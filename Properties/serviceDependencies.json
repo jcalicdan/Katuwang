@@ -1,0 +1,15 @@
+{
+  "dependencies": {
+    "mssql": {
+      "type": "mssql",
+      "connectionId": "ConnectionStrings:AuthDBContextConnection"
+    },
+    "secrets1": {
+      "type": "secrets"
+    },
+    "mssql1": {
+      "type": "mssql",
+      "connectionId": "ConnectionStrings:KatuwangContextConnection"
+    }
+  }
+}
