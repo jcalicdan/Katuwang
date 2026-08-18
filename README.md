@@ -1,3 +1,5 @@
+Live demo: katuwang.runasp.net
+
 # Katuwang
 
 Katuwang is an ASP.NET Core MVC membership and operations management application. It centralizes member records, household groupings, duty assignments, transfers, dashboards, authentication, and PDF reporting in one system.
