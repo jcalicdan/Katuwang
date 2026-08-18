@@ -1,4 +1,3 @@
-Live demo: katuwang.runasp.net
 
 # Katuwang
 
